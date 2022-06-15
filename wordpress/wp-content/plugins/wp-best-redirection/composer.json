@@ -1,0 +1,18 @@
+{
+    "name": "gersey/wp-best-redirection",
+    "description": "Plugin created.",
+    "autoload": {
+        "psr-4": {
+            "WPBestRedirection\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Gersey Franco Stelmach"
+        }
+    ],
+    "require": {
+        "php": ">=7.4",
+        "twbs/bootstrap": "^5.1"
+    }
+}
