@@ -3,33 +3,44 @@
 namespace WPBestRedirection\Controller\Admin\Menu;
 
 use WPBestRedirection\Controller\Controller;
+use WPBestRedirection\Controller\Admin\Menu\RedirectionSubMenuController;
 
 class MenuController extends Controller
 {
-    public function create()
-    {
-        // Creation of admin menu
-        // I cannot call the add_menu_page() direct, so I create an anonymous function
-        // In the argument of callback, I also need to add a function
-        add_action('admin_menu', function() {
-            add_menu_page(
-                'WPBestRedirection',
-                'WP Best Redirection Options',
-                'manage_options',
-                'wp_best_redirection',
-                function() {
-                  echo $this->show();
-                },
-                'dashicons-admin-links',
-                1
-            );
-        });
+	private string $parentSlug;
+	private string $manageSlug;
 
-    }
+	public function __construct()
+	{
+		$this->parentSlug = 'wp_best_redirection';
+		$this->manageSlug = 'wp_best_redirection_manage';
+	}
 
-// Render of HTML for the menu
-    public function show()
-    {
-        return $this->render('admin/menu/show.html.php');
-    }
+	public function create()
+	{
+		// Création menu
+		add_action('admin_menu', function () {
+			add_menu_page(
+				'WpBestRedirection',
+				'WpBestRedirection Options',
+				'manage_options',
+				$this->parentSlug,
+				function () {
+					echo $this->show();
+				},
+				'dashicons-admin-links'
+			);
+		});
+
+		// Création sous-menu
+		$redirectionSubMenu = new RedirectionSubMenuController();
+		$redirectionSubMenu->create($this->manageSlug, $this->parentSlug);
+	}
+
+	public function show()
+	{
+		return $this->render('admin/menu/show.html.php', [
+			'manageSlug' => $this->manageSlug
+		]);
+	}
 }

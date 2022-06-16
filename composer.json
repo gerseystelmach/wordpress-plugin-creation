@@ -33,7 +33,7 @@
     "source": "https://core.trac.wordpress.org/browser"
   },
   "require": {
-    "php": ">=7.0",
+    "php": ">=7.4",
     "johnpbloch/wordpress-core-installer": "^1.0 || ^2.0",
     "johnpbloch/wordpress-core": "6.0.0",
     "wpackagist-theme/hello-elementor": "2.5",
