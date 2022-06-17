@@ -24,7 +24,6 @@ function wp_best_events_address_meta_box_html( $post ) {
 
     // Recovering address from database
 	$address = get_post_meta( $post->ID, $addressMetaBoxId, true );
-
 	// We MUST not create a tag form, because this will already be created within this tag.
 	?>
 	<?php // To save the data from this metabox, I only need to save the post. However, we can save it automatically by using ajax ?>

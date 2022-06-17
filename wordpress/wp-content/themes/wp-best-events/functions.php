@@ -1,5 +1,8 @@
 <?php
 
+// Force WP to rewrite the rules
+flush_rewrite_rules();
+
 // We need to use the function get_stylesheet_directory_uri()
 // cause the one with template_directory will search the folder from the parent template
 add_action( 'wp_enqueue_scripts', function () {
@@ -10,4 +13,5 @@ add_action( 'wp_enqueue_scripts', function () {
 require __DIR__ . '/inc/custom-post-type.php';
 require __DIR__ . '/inc/taxonomy.php';
 require __DIR__ . '/inc/meta-boxes.php';
+require __DIR__ . '/inc/register-sidebar.php';
 
